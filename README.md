@@ -1,5 +1,9 @@
 # 日常会話で使える台湾華語
+## 画面遷移図
 Figma：https://www.figma.com/file/AL0efY62iqmVfP7S8oYM8v/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=XOjh5ZopM7gLsfu8-1
+
+## ER図
+https://gyazo.com/32dded4ea8b37f023740e97437c7ac07
 # サービス概要
 台湾の中国語で、主要言語である台湾華語の学習アプリ。
 日常会話で使われる単語や単文を私の声で録音し、ユーザーはその音声を流すことができる。<br>
