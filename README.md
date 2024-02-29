@@ -3,7 +3,7 @@
 Figma：https://www.figma.com/file/AL0efY62iqmVfP7S8oYM8v/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=XOjh5ZopM7gLsfu8-1
 
 ## ER図
-https://gyazo.com/ca8678959b1dd5088e9db31072913b86
+https://gyazo.com/d4f4e480d9b30025ccce5aec98170dfc
 # サービス概要
 台湾の中国語で、主要言語である台湾華語の学習アプリ。
 日常会話で使われる単語や単文を私の声で録音し、ユーザーはその音声を流すことができる。<br>
