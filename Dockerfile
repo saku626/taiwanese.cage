@@ -1,8 +1,10 @@
 ARG RUBY_VERSION=ruby:3.2.2
+# RAILS_ENVの設定はFROM命令の後に移動させます
 ARG NODE_VERSION=20
 
-FROM $RUBY_VERSION
-ARG RUBY_VERSION
+FROM ${RUBY_VERSION}
+# ここにENV RAILS_ENV=productionを移動
+#ENV RAILS_ENV=production
 ARG NODE_VERSION
 ENV LANG C.UTF-8
 ENV TZ Asia/Tokyo
@@ -20,3 +22,7 @@ COPY yarn.lock /app/yarn.lock
 RUN bundle install
 RUN yarn install
 COPY . /app
+
+COPY start.sh /start.sh
+RUN chmod 744 /start.sh
+CMD ["sh", "/start.sh"]
