@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_13_093100) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_26_152111) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "bopomofo", null: false
+    t.string "mean", null: false
+    t.text "body"
+    t.bigint "user_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_requests_on_category_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
@@ -24,4 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_13_093100) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "categories", "users"
+  add_foreign_key "requests", "categories"
+  add_foreign_key "requests", "users"
 end
