@@ -21,6 +21,7 @@
           <th scope="col">単語</th>
           <th scope="col">ボポモフォ</th>
           <th scope="col">意味</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <% index = 1 %>
@@ -31,6 +32,11 @@
           <td><%= request.title %></td>
           <td><%= request.bopomofo %></td>
           <td><%= request.mean %></td>
+          <td>
+            <%= link_to request_path(request) do %>
+              <button type="button" class="btn btn-secondary">詳細</button>
+            <% end %>
+          </td>
         </tr>
       </tbody>
       <% index += 1 %>
@@ -45,6 +51,7 @@
           <th scope="col">単語</th>
           <th scope="col">ボポモフォ</th>
           <th scope="col">意味</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <% index = 1 %>
@@ -55,6 +62,11 @@
           <td><%= request.title %></td>
           <td><%= request.bopomofo %></td>
           <td><%= request.mean %></td>
+          <td>
+            <%= link_to request_path(request) do %>
+              <button type="button" class="btn btn-secondary">詳細</button>
+            <% end %>
+          </td>
         </tr>
       </tbody>
       <% index += 1 %>

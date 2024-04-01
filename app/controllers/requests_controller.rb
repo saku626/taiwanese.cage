@@ -5,4 +5,8 @@ class RequestsController < ApplicationController
     target_category1 = Category.find_by(name: 'ビジネス')
     @requests1 = Request.where(category_id: target_category1.id)
   end
+
+  def show
+    @request = Request.find(params[:id])
+  end
 end

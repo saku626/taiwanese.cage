@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_requests, through: :bookmarks, source: :request
+  has_many :categories, dependent: :destroy
 
   def bookmark(request)
     bookmark_requests << request

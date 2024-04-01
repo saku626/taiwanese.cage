@@ -1,17 +1,17 @@
 <h1>リスト一覧</h1>
+  <div class="d-flex justify-content-end">
+    <%= link_to new_category_path do %>
+      <button type="button" class="btn btn-warning me-3">カテゴリーの追加</button>
+    <% end %>
+  </div>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">日常生活</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">ビジネス</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">気分・気持ち</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
-  </li>
+  <% @category.each_with_index do |category, index| %>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link <%= index == 0 ? 'active' : '' %>" id="<%= "#{category.name.downcase}-tab" %>" data-bs-toggle="tab" data-bs-target="#<%= "#{category.name.downcase}-tab-pane" %>" type="button" role="tab" aria-controls="<%= "#{category.name.downcase}-tab-pane" %>" aria-selected="<%= index == 0 ? 'true' : 'false' %>">
+        <%= category.name %>
+      </button>
+    </li>
+  <% end %>
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
@@ -22,6 +22,7 @@
           <th scope="col">単語</th>
           <th scope="col">ボポモフォ</th>
           <th scope="col">意味</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <% index = 1 %>
@@ -32,6 +33,11 @@
           <td><%= request.title %></td>
           <td><%= request.bopomofo %></td>
           <td><%= request.mean %></td>
+          <td>
+            <%= link_to request_path(request) do %>
+              <button type="button" class="btn btn-secondary">詳細</button>
+            <% end %>
+          </td>
         </tr>
       </tbody>
       <% index += 1 %>

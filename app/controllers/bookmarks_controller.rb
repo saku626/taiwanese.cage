@@ -1,6 +1,7 @@
 class BookmarksController < ApplicationController
   def index
     @requests = current_user.bookmark_requests.order(created_at: :desc)
+    @category = Category.where(user_id: current_user.id)
   end
 
   def create
