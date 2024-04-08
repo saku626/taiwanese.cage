@@ -1,4 +1,6 @@
 class RequestsController < ApplicationController
+  skip_before_action :require_login, only: [:show]
+  
   def index
     target_category = Category.find_by(name: '日常生活')
     @requests = Request.where(category_id: target_category.id)  

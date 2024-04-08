@@ -1,15 +1,9 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
-    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">日常生活</button>
+    <button class="nav-link active tabbak-color" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">日常生活</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">ビジネス</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">気分・気持ち</button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" disabled>Disabled</button>
+    <button class="nav-link tabbak2-color" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">ビジネス</button>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
@@ -74,7 +68,22 @@
           <td><%= request.title %></td>
           <td><%= request.bopomofo %></td>
           <td><%= request.mean %></td>
-          <td><%= link_to 'リストに追加', bookmarks_path(request_id: request.id), data: { turbo_method: :post } %></td>
+          <td>
+            <% if current_user.bookmark?(request) %>
+              <%= link_to bookmark_path(current_user.bookmarks.find_by(request_id: request.id)), data: { turbo_method: :delete } do %>
+                <button type="button" class="btn btn-outline-secondary">リストから削除</button>
+              <% end %>
+            <% else %>
+              <%= link_to bookmarks_path(request_id: request.id), data: { turbo_method: :post } do %>
+                <button type="button" class="btn btn-outline-secondary">リストに追加</button>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to request_path(request) do %>
+              <button type="button" class="btn btn-secondary">詳細</button>
+            <% end %>
+          </td>
         </tr>
       </tbody>
       <% index += 1 %>
