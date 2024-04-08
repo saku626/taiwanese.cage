@@ -16,6 +16,7 @@
           <th scope="col">ボポモフォ</th>
           <th scope="col">意味</th>
           <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <% index = 1 %>
@@ -26,6 +27,17 @@
           <td><%= request.title %></td>
           <td><%= request.bopomofo %></td>
           <td><%= request.mean %></td>
+          <td>
+            <% if current_user.bookmark?(request) %>
+              <%= link_to bookmark_path(current_user.bookmarks.find_by(request_id: request.id)), data: { turbo_method: :delete } do %>
+                <button type="button" class="btn btn-outline-secondary">リストから削除</button>
+              <% end %>
+            <% else %>
+              <%= link_to bookmarks_path(request_id: request.id), data: { turbo_method: :post } do %>
+                <button type="button" class="btn btn-outline-secondary">リストに追加</button>
+              <% end %>
+            <% end %>
+          </td>
           <td>
             <%= link_to request_path(request) do %>
               <button type="button" class="btn btn-secondary">詳細</button>
@@ -56,6 +68,17 @@
           <td><%= request.title %></td>
           <td><%= request.bopomofo %></td>
           <td><%= request.mean %></td>
+          <td>
+            <% if current_user.bookmark?(request) %>
+              <%= link_to bookmark_path(current_user.bookmarks.find_by(request_id: request.id)), data: { turbo_method: :delete } do %>
+                <button type="button" class="btn btn-outline-secondary">リストから削除</button>
+              <% end %>
+            <% else %>
+              <%= link_to bookmarks_path(request_id: request.id), data: { turbo_method: :post } do %>
+                <button type="button" class="btn btn-outline-secondary">リストに追加</button>
+              <% end %>
+            <% end %>
+          </td>
           <td>
             <%= link_to request_path(request) do %>
               <button type="button" class="btn btn-secondary">詳細</button>
