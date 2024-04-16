@@ -99,27 +99,34 @@
 </div>
 
 <script>
-  window.onload = function() {
-    // ボタン要素を取得
-    var playButtons = document.querySelectorAll('.btn-light');
+ document.addEventListener("turbo:load", function() {
+  // ボタン要素を取得
+  var playButtons = document.querySelectorAll('.btn-light');
 
-    // ボタンがクリックされたときのイベントリスナーを追加
-    playButtons.forEach(function(playButton) {
-      playButton.addEventListener('click', function() {
-        // 親要素(tr)を取得
-        var row = this.closest('tr');
+  // イベントリスナーをクリア
+  playButtons.forEach(function(playButton) {
+    playButton.removeEventListener('click', playButtonClickHandler);
+  });
 
-        // テーブルの <td> 要素を取得
-        var titleCell = row.querySelector('td:nth-child(3)');
+  // ボタンがクリックされたときのイベントリスナーを再登録
+  playButtons.forEach(function(playButton) {
+    playButton.addEventListener('click', playButtonClickHandler);
+  });
+});
 
-        // タイトルのテキストを取得
-        var text = titleCell.textContent.trim();
+function playButtonClickHandler() {
+  // 親要素(tr)を取得
+  var row = this.closest('tr');
 
-        // Web Speech API を使用してテキストを読み上げる
-        var utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'zh-CN';
-        speechSynthesis.speak(utterance);
-      });
-    });
-  };
+  // テーブルの <td> 要素を取得
+  var titleCell = row.querySelector('td:nth-child(3)');
+
+  // タイトルのテキストを取得
+  var text = titleCell.textContent.trim();
+
+  // Web Speech API を使用してテキストを読み上げる
+  var utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'zh-CN';
+  speechSynthesis.speak(utterance);
+}
 </script>
