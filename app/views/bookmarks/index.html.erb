@@ -22,6 +22,7 @@
       <thead>
         <tr>
           <th scope="col">#</th>
+          <th scope="col"></th>
           <th scope="col">単語</th>
           <th scope="col">ボポモフォ</th>
           <th scope="col">意味</th>
@@ -33,6 +34,7 @@
       <tbody>
         <tr>
           <th scope="row"><%= index %></th>
+          <td><button id="playButton" type="button" class="btn btn-light btn-icon"><i class="bi bi-volume-up"></i></button></td>
           <td><%= request.title %></td>
           <td><%= request.bopomofo %></td>
           <td><%= request.mean %></td>
@@ -52,3 +54,36 @@
   <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
   <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
 </div>
+
+<script>
+ document.addEventListener("turbo:load", function() {
+  // ボタン要素を取得
+  var playButtons = document.querySelectorAll('.btn-light');
+
+  // イベントリスナーをクリア
+  playButtons.forEach(function(playButton) {
+    playButton.removeEventListener('click', playButtonClickHandler);
+  });
+
+  // ボタンがクリックされたときのイベントリスナーを再登録
+  playButtons.forEach(function(playButton) {
+    playButton.addEventListener('click', playButtonClickHandler);
+  });
+});
+
+function playButtonClickHandler() {
+  // 親要素(tr)を取得
+  var row = this.closest('tr');
+
+  // テーブルの <td> 要素を取得
+  var titleCell = row.querySelector('td:nth-child(3)');
+
+  // タイトルのテキストを取得
+  var text = titleCell.textContent.trim();
+
+  // Web Speech API を使用してテキストを読み上げる
+  var utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'zh-CN';
+  speechSynthesis.speak(utterance);
+}
+</script>
