@@ -1,12 +1,12 @@
 <h1 class="mt-1">リスト一覧</h1>
-  <div class="d-flex justify-content-end">
-    <%= link_to "#" do %>
-      <button type="button" class="btn btn-primary me-3">単語の作成</button>
-    <% end %>
-    <%= link_to new_category_path do %>
-      <button type="button" class="btn btn-warning me-3">カテゴリーの追加</button>
-    <% end %>
-  </div>
+<div class="d-flex justify-content-end">
+  <%= link_to "#" do %>
+    <button type="button" class="btn btn-primary me-3">単語の作成</button>
+  <% end %>
+  <%= link_to new_category_path do %>
+    <button type="button" class="btn btn-warning me-3">カテゴリーの追加</button>
+  <% end %>
+</div>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <% @category.each_with_index do |category, index| %>
     <li class="nav-item" role="presentation">
@@ -17,42 +17,40 @@
   <% end %>
 </ul>
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col"></th>
-          <th scope="col">単語</th>
-          <th scope="col">ボポモフォ</th>
-          <th scope="col">意味</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <% index = 1 %>
-      <% @requests.each do |request| %>
-      <tbody>
-        <tr>
-          <th scope="row"><%= index %></th>
-          <td><button id="playButton" type="button" class="btn btn-light btn-icon"><i class="bi bi-volume-up"></i></button></td>
-          <td><%= request.title %></td>
-          <td><%= request.bopomofo %></td>
-          <td><%= request.mean %></td>
-          <td>
-            <%= link_to request_path(request) do %>
-              <button type="button" class="btn btn-secondary">詳細</button>
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-      <% index += 1 %>
-      <% end %>
-    </table>
-  </div>
-  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-  </div>
-  <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
-  <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
+  <% @category.each_with_index do |category, index| %>
+    <div class="tab-pane fade<%= index == 0 ? ' show active' : '' %>" id="<%= "#{category.name.downcase}-tab-pane" %>" role="tabpanel" aria-labelledby="<%= "#{category.name.downcase}-tab" %>" tabindex="0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col"></th>
+            <th scope="col">単語</th>
+            <th scope="col">ボポモフォ</th>
+            <th scope="col">意味</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% index = 1 %>
+          <% @category_with_requests[category].each do |request| %>
+            <tr>
+              <th scope="row"><%= index %></th>
+              <td><button id="playButton" type="button" class="btn btn-light btn-icon"><i class="bi bi-volume-up"></i></button></td>
+              <td><%= request.title %></td>
+              <td><%= request.bopomofo %></td>
+              <td><%= request.mean %></td>
+              <td>
+                <%= link_to request_path(request) do %>
+                  <button type="button" class="btn btn-secondary">詳細</button>
+                <% end %>
+              </td>
+            </tr>
+            <% index += 1 %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 </div>
 
 <script>
