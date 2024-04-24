@@ -6,11 +6,14 @@
   <%= link_to new_category_path do %>
     <button type="button" class="btn btn-warning me-3">カテゴリーの追加</button>
   <% end %>
+  <%= link_to "#" do %>
+    <button type="button" class="btn btn-danger me-3">カテゴリーの削除</button>
+  <% end %>
 </div>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <% @category.each_with_index do |category, index| %>
     <li class="nav-item" role="presentation">
-      <button class="nav-link <%= index == 0 ? 'active' : '' %>" id="<%= "#{category.name.downcase}-tab" %>" data-bs-toggle="tab" data-bs-target="#<%= "#{category.name.downcase}-tab-pane" %>" type="button" role="tab" aria-controls="<%= "#{category.name.downcase}-tab-pane" %>" aria-selected="<%= index == 0 ? 'true' : 'false' %>">
+      <button class="nav-link <%= index == 0 ? 'active' : '' %>" id="<%= "tab-#{category.id}" %>" data-bs-toggle="tab" data-bs-target="#<%= "tab-pane-#{category.id}" %>" type="button" role="tab" aria-controls="<%= "tab-pane-#{category.id}" %>" aria-selected="<%= index == 0 ? 'true' : 'false' %>">
         <%= category.name %>
       </button>
     </li>
@@ -18,7 +21,7 @@
 </ul>
 <div class="tab-content" id="myTabContent">
   <% @category.each_with_index do |category, index| %>
-    <div class="tab-pane fade<%= index == 0 ? ' show active' : '' %>" id="<%= "#{category.name.downcase}-tab-pane" %>" role="tabpanel" aria-labelledby="<%= "#{category.name.downcase}-tab" %>" tabindex="0">
+    <div class="tab-pane fade<%= index == 0 ? ' show active' : '' %>" id="<%= "tab-pane-#{category.id}" %>" role="tabpanel" aria-labelledby="<%= "tab-#{category.id}" %>" tabindex="0">
       <table class="table">
         <thead>
           <tr>

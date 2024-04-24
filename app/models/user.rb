@@ -22,4 +22,8 @@ class User < ApplicationRecord
   def bookmark?(request)
     bookmark_requests.include?(request)
   end
+
+  def bookmark(request, category_id)
+    bookmarks.create(request: request, category_id: category_id)
+  end
 end

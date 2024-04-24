@@ -9,7 +9,8 @@ class BookmarksController < ApplicationController
 
   def create
     request = Request.find(params[:request_id])
-    current_user.bookmark(request)
+    category_id = params[:category_id]
+    current_user.bookmark(request, category_id)
     redirect_to requests_path, success: t('.success')
   end
 
