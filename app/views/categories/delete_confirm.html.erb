@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-8 mx-auto">
+      <h1>カテゴリーを選択して削除する</h1>
+      <%= form_with(url: delete_confirm_categories_path, method: :delete, local: false) do %>
+        <%= select_tag(:category_id, options_for_select(@categories.map { |c| [c.name, c.id] }), prompt: "カテゴリーを選択してください") %>
+        <%= submit_tag "選択したカテゴリーを削除", data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger mt-3" %>
+      <% end %>
+    </div>
+  </div>
+</div>

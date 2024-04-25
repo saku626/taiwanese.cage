@@ -13,6 +13,16 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def delete_confirm
+    @categories = current_user.categories
+  end
+
+  def destroy
+    @category = current_user.categories.find(params[:category_id])
+    @category.destroy
+    redirect_to bookmarks_path, success: "カテゴリーを削除しました"
+  end
+
   private
 
   def category_params
