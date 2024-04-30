@@ -35,14 +35,14 @@
                 <button type="button" class="btn btn-outline-secondary">リストから削除</button>
               <% end %>
             <% else %>
-              <div class="accordion" id="bookmarkForm">
+              <div class="accordion" id="bookmarkForm<%= request.id %>">
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="bookmarkFormHeading">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse" aria-expanded="false" aria-controls="bookmarkFormCollapse">
+                  <h2 class="accordion-header" id="bookmarkFormHeading<%= request.id %>">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse<%= request.id %>" aria-expanded="false" aria-controls="bookmarkFormCollapse<%= request.id %>">
                       リストに追加
                     </button>
                   </h2>
-                  <div id="bookmarkFormCollapse" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading" data-bs-parent="#bookmarkForm">
+                  <div id="bookmarkFormCollapse<%= request.id %>" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading<%= request.id %>" data-bs-parent="#bookmarkForm<%= request.id %>">
                     <div class="accordion-body">
                       <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
                         <div class="mb-3">
@@ -96,14 +96,14 @@
                 <button type="button" class="btn btn-outline-secondary">リストから削除</button>
               <% end %>
             <% else %>
-              <div class="accordion" id="bookmarkForm">
+              <div class="accordion" id="bookmarkForm<%= request.id %>">
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="bookmarkFormHeading">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse" aria-expanded="false" aria-controls="bookmarkFormCollapse">
+                  <h2 class="accordion-header" id="bookmarkFormHeading<%= request.id %>">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse<%= request.id %>" aria-expanded="false" aria-controls="bookmarkFormCollapse<%= request.id %>">
                       リストに追加
                     </button>
                   </h2>
-                  <div id="bookmarkFormCollapse" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading" data-bs-parent="#bookmarkForm">
+                  <div id="bookmarkFormCollapse<%= request.id %>" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading<%= request.id %>" data-bs-parent="#bookmarkForm<%= request.id %>">
                     <div class="accordion-body">
                       <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
                         <div class="mb-3">
