@@ -1,6 +1,6 @@
 <h1 class="mt-1">リスト一覧</h1>
 <div class="d-flex justify-content-end">
-  <%= link_to "#" do %>
+  <%= link_to new_vocabulary_path do %>
     <button type="button" class="btn btn-primary me-3">単語の作成</button>
   <% end %>
   <%= link_to new_category_path do %>
@@ -44,6 +44,22 @@
               <td><%= request.mean %></td>
               <td>
                 <%= link_to request_path(request) do %>
+                  <button type="button" class="btn btn-secondary">詳細</button>
+                <% end %>
+              </td>
+            </tr>
+            <% index += 1 %>
+          <% end %>
+            <!-- vocabulariesテーブルのデータを表示する部分 -->
+          <% @category_with_vocabularies[category].each do |vocabulary| %>
+            <tr>
+              <th scope="row"><%= index %></th>
+              <td><button id="playButton" type="button" class="btn btn-light btn-icon"><i class="bi bi-volume-up"></i></button></td>
+              <td><%= vocabulary.title %></td>
+              <td><%= vocabulary.bopomofo %></td>
+              <td><%= vocabulary.mean %></td>
+              <td>
+                <%= link_to vocabulary_path(vocabulary) do %>
                   <button type="button" class="btn btn-secondary">詳細</button>
                 <% end %>
               </td>

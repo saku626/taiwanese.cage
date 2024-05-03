@@ -2,8 +2,10 @@ class BookmarksController < ApplicationController
   def index
     @category = Category.where(user_id: current_user.id)
     @category_with_requests = {}
+    @category_with_vocabularies = {}
     @category.each do |category|
       @category_with_requests[category] = current_user.bookmarks.includes(:request).where(category_id: category.id).order(created_at: :desc).map(&:request)
+      @category_with_vocabularies[category] = Vocabulary.where(category_id: category.id).order(created_at: :desc)
     end
   end
 
