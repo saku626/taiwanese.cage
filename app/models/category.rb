@@ -3,4 +3,5 @@ class Category < ApplicationRecord
 
   belongs_to :user
   has_many :bookmarks, dependent: :destroy
+  has_many :vocabularies, dependent: :destroy
 end

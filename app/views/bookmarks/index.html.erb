@@ -31,6 +31,7 @@
             <th scope="col">ボポモフォ</th>
             <th scope="col">意味</th>
             <th scope="col"></th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -61,6 +62,18 @@
               <td>
                 <%= link_to vocabulary_path(vocabulary) do %>
                   <button type="button" class="btn btn-secondary">詳細</button>
+                <% end %>
+              </td>
+              <td>
+                <% if current_user.own?(vocabulary) %>
+                  <div class="ms-auto">
+                    <%= link_to edit_vocabulary_path(vocabulary), id: "button-edit-#{vocabulary.id}" do %>
+                      <i class="bi bi-pencil-fill"></i>
+                    <% end %>
+                    <%= link_to vocabulary_path(vocabulary), id: "button-delete-#{vocabulary.id}", data: { turbo_method: :delete, turbo_confirm: '削除しますか' } do %>
+                      <i class="bi bi-trash-fill"></i>
+                    <% end %>
+                  </div>
                 <% end %>
               </td>
             </tr>
