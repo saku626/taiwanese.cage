@@ -47,7 +47,12 @@
                       <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
                         <div class="mb-3">
                           <%= f.label :category_id, "カテゴリー" %>
-                          <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                          <% if current_user.categories.blank? %>
+                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                            <p class="text-danger" style="font-size: 0.9em;" >リスト一覧ページから<br>カテゴリーの追加をしてください。</p>
+                          <% else %>
+                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                          <% end %>
                         </div>
                         <%= f.hidden_field :request_id, value: request.id %>
                         <%= f.submit "追加", class: "btn btn-outline-secondary" %>
@@ -108,7 +113,12 @@
                       <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
                         <div class="mb-3">
                           <%= f.label :category_id, "カテゴリー" %>
-                          <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                          <% if current_user.categories.blank? %>
+                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                            <p class="text-danger" style="font-size: 0.9em;" >リスト一覧ページから<br>カテゴリーの追加をしてください。</p>
+                          <% else %>
+                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                          <% end %>
                         </div>
                         <%= f.hidden_field :request_id, value: request.id %>
                         <%= f.submit "追加", class: "btn btn-outline-secondary" %>
