@@ -10,6 +10,11 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_requests, through: :bookmarks, source: :request
   has_many :categories, dependent: :destroy
+  has_many :vocabularies, dependent: :destroy
+
+  def own?(object)
+    self.id == object.user_id #selfは省略できる
+  end
 
   def bookmark(request)
     bookmark_requests << request
@@ -21,5 +26,9 @@ class User < ApplicationRecord
 
   def bookmark?(request)
     bookmark_requests.include?(request)
+  end
+
+  def bookmark(request, category_id)
+    bookmarks.create(request: request, category_id: category_id)
   end
 end

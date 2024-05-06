@@ -4,7 +4,7 @@ ARG NODE_VERSION=20
 
 FROM ${RUBY_VERSION}
 # ここにENV RAILS_ENV=productionを移動
-#ENV RAILS_ENV=production
+ENV RAILS_ENV=production
 ARG NODE_VERSION
 ENV LANG C.UTF-8
 ENV TZ Asia/Tokyo

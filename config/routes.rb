@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :requests, only: %i[index show]
   resources :bookmarks, only: %i[index create destroy]
-  resources :categories, only: %i[new create]
+  resources :vocabularies, only: %i[show new create edit update destroy]
+  
+  resources :categories, only: [:new, :create, :destroy] do
+    get :delete_confirm, on: :collection
+  end
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'

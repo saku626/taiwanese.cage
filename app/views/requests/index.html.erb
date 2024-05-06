@@ -35,9 +35,32 @@
                 <button type="button" class="btn btn-outline-secondary">リストから削除</button>
               <% end %>
             <% else %>
-              <%= link_to bookmarks_path(request_id: request.id), data: { turbo_method: :post } do %>
-                <button type="button" class="btn btn-outline-secondary">リストに追加</button>
-              <% end %>
+              <div class="accordion" id="bookmarkForm<%= request.id %>">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="bookmarkFormHeading<%= request.id %>">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse<%= request.id %>" aria-expanded="false" aria-controls="bookmarkFormCollapse<%= request.id %>">
+                      リストに追加
+                    </button>
+                  </h2>
+                  <div id="bookmarkFormCollapse<%= request.id %>" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading<%= request.id %>" data-bs-parent="#bookmarkForm<%= request.id %>">
+                    <div class="accordion-body">
+                      <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
+                        <div class="mb-3">
+                          <%= f.label :category_id, "カテゴリー" %>
+                          <% if current_user.categories.blank? %>
+                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                            <p class="text-danger" style="font-size: 0.9em;" >リスト一覧ページから<br>カテゴリーの追加をしてください。</p>
+                          <% else %>
+                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                          <% end %>
+                        </div>
+                        <%= f.hidden_field :request_id, value: request.id %>
+                        <%= f.submit "追加", class: "btn btn-outline-secondary" %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <% end %>
           </td>
           <td>
@@ -78,9 +101,32 @@
                 <button type="button" class="btn btn-outline-secondary">リストから削除</button>
               <% end %>
             <% else %>
-              <%= link_to bookmarks_path(request_id: request.id), data: { turbo_method: :post } do %>
-                <button type="button" class="btn btn-outline-secondary">リストに追加</button>
-              <% end %>
+              <div class="accordion" id="bookmarkForm<%= request.id %>">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="bookmarkFormHeading<%= request.id %>">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse<%= request.id %>" aria-expanded="false" aria-controls="bookmarkFormCollapse<%= request.id %>">
+                      リストに追加
+                    </button>
+                  </h2>
+                  <div id="bookmarkFormCollapse<%= request.id %>" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading<%= request.id %>" data-bs-parent="#bookmarkForm<%= request.id %>">
+                    <div class="accordion-body">
+                      <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
+                        <div class="mb-3">
+                          <%= f.label :category_id, "カテゴリー" %>
+                          <% if current_user.categories.blank? %>
+                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                            <p class="text-danger" style="font-size: 0.9em;" >リスト一覧ページから<br>カテゴリーの追加をしてください。</p>
+                          <% else %>
+                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                          <% end %>
+                        </div>
+                        <%= f.hidden_field :request_id, value: request.id %>
+                        <%= f.submit "追加", class: "btn btn-outline-secondary" %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
             <% end %>
           </td>
           <td>
@@ -99,27 +145,34 @@
 </div>
 
 <script>
-  window.onload = function() {
-    // ボタン要素を取得
-    var playButtons = document.querySelectorAll('.btn-light');
+ document.addEventListener("turbo:load", function() {
+  // ボタン要素を取得
+  var playButtons = document.querySelectorAll('.btn-light');
 
-    // ボタンがクリックされたときのイベントリスナーを追加
-    playButtons.forEach(function(playButton) {
-      playButton.addEventListener('click', function() {
-        // 親要素(tr)を取得
-        var row = this.closest('tr');
+  // イベントリスナーをクリア
+  playButtons.forEach(function(playButton) {
+    playButton.removeEventListener('click', playButtonClickHandler);
+  });
 
-        // テーブルの <td> 要素を取得
-        var titleCell = row.querySelector('td:nth-child(3)');
+  // ボタンがクリックされたときのイベントリスナーを再登録
+  playButtons.forEach(function(playButton) {
+    playButton.addEventListener('click', playButtonClickHandler);
+  });
+});
 
-        // タイトルのテキストを取得
-        var text = titleCell.textContent.trim();
+function playButtonClickHandler() {
+  // 親要素(tr)を取得
+  var row = this.closest('tr');
 
-        // Web Speech API を使用してテキストを読み上げる
-        var utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'zh-CN';
-        speechSynthesis.speak(utterance);
-      });
-    });
-  };
+  // テーブルの <td> 要素を取得
+  var titleCell = row.querySelector('td:nth-child(3)');
+
+  // タイトルのテキストを取得
+  var text = titleCell.textContent.trim();
+
+  // Web Speech API を使用してテキストを読み上げる
+  var utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'zh-CN';
+  speechSynthesis.speak(utterance);
+}
 </script>

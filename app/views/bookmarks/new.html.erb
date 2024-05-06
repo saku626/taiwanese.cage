@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row">
+    <div class=" col-md-10 col-lg-8 mx-auto">
+      <h1>カテゴリーの選択</h1>
+      <%= form_with model: @category, class: "new_board" do |f| %>
+        <div class="mb-3">
+          <%= f.label :カテゴリー名 %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <%= f.submit "追加", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
