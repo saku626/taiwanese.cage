@@ -1,15 +1,23 @@
 <h1 class="mt-1">リスト一覧</h1>
-<div class="d-flex justify-content-end">
-  <%= link_to new_vocabulary_path do %>
-    <button type="button" class="btn btn-primary me-3">単語の作成</button>
-  <% end %>
-  <%= link_to new_category_path do %>
-    <button type="button" class="btn btn-warning me-3">カテゴリーの追加</button>
-  <% end %>
-  <%= link_to delete_confirm_categories_path, class: "btn btn-danger me-3" do %>
-    カテゴリーの削除
-  <% end %>
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="d-flex flex-column flex-sm-row justify-content-sm-end">
+        <div class="text-center mb-3 mb-sm-0">
+          <%= link_to new_vocabulary_path do %>
+            <button type="button" class="btn btn-primary me-3">単語の作成</button>
+          <% end %>
+        </div>
+        <div class="text-center mb-3 mb-sm-0">
+          <%= link_to new_category_path do %>
+            <button type="button" class="btn btn-warning me-3">カテゴリーの追加</button>
+          <% end %>
+          <%= link_to delete_confirm_categories_path, class: "btn btn-danger" do %>
+            カテゴリーの削除
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <% @category.each_with_index do |category, index| %>
     <li class="nav-item" role="presentation">
@@ -67,15 +75,15 @@
                 </td>
                 <td style="white-space: nowrap;">
                   <% if current_user.own?(vocabulary) %>
-                    <div class="ms-auto">
-                      <%= link_to edit_vocabulary_path(vocabulary), id: "button-edit-#{vocabulary.id}" do %>
-                        <i class="bi bi-pencil-fill"></i>
-                      <% end %>
-                      <%= link_to vocabulary_path(vocabulary), id: "button-delete-#{vocabulary.id}", data: { turbo_method: :delete, turbo_confirm: '削除しますか' } do %>
-                        <i class="bi bi-trash-fill"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
+                  <div class="ms-auto">
+                    <%= link_to edit_vocabulary_path(vocabulary), id: "button-edit-#{vocabulary.id}" do %>
+                      <i class="bi bi-pencil-fill me-1"></i>
+                    <% end %>
+                    <%= link_to vocabulary_path(vocabulary), id: "button-delete-#{vocabulary.id}", data: { turbo_method: :delete, turbo_confirm: '削除しますか' } do %>
+                      <i class="bi bi-trash-fill"></i>
+                    <% end %>
+                  </div>
+                <% end %>
                 </td>
               </tr>
               <% index += 1 %>
