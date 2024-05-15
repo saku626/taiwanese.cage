@@ -13,12 +13,12 @@ class BookmarksController < ApplicationController
     request = Request.find(params[:request_id])
     category_id = params[:category_id]
     current_user.bookmark(request, category_id)
-    redirect_to requests_path, success: t('.success')
+    redirect_to requests_path, success: "リストに追加しました"
   end
 
   def destroy
     request = current_user.bookmarks.find(params[:id]).request
     current_user.unbookmark(request)
-    redirect_to requests_path, success: t('.success'), status: :see_other
+    redirect_to requests_path, success: "リストから削除しました", status: :see_other
   end
 end
