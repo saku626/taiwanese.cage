@@ -1,15 +1,19 @@
 .top-wrapper {
   background-image: url("toptaiwan.jpg");
-  height: calc(100vh - 320px);
+  height: calc(100vh - 300px);
   background-position: center;
   background-size: cover;
+}
+
+body {
+  background-color: rgb(255, 252, 247);
 }
 
 h1 {
   margin-top: 30px;
   margin-bottom: 20px;
   margin-left: 30px;
-  font-family: 'HiraMinProN-W3', '游明朝体', Arial, sans-serif;
+  font-family: 'HiraMinProN-W3', '游明朝体', 'Times New Roman', serif;
 }
 
 .navbar-brand img {
