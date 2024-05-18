@@ -1,3 +1,9 @@
+.containef {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .top-wrapper {
   background-image: url("toptaiwan.jpg");
   height: calc(100vh - 300px);
@@ -12,6 +18,7 @@ body {
 footer {
   background-color: rgb(255, 243, 213);
   padding: 10px;
+  margin-top: auto;
 }
 
 h1 {
@@ -26,8 +33,17 @@ h1 {
 }
 
 .menu-color {
+  height: 80px;/*高さ指定*/
+	width:100%;/*横幅指定*/
   background-color: rgb(70, 53, 32);
   padding-left: 5px;
+}
+
+.menu-color.fixed {
+  position: fixed;/*fixedを設定して固定*/
+  z-index: 999;/*最前面へ*/
+  top:0;/*位置指定*/
+  left:0;/*位置指定*/
 }
 
 .collapse.navbar-collapse{
