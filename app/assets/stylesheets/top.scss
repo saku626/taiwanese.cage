@@ -1,12 +1,83 @@
+.containef {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.top-wrapper {
+  background-image: url("toptaiwan.jpg");
+  height: calc(100vh - 300px);
+  background-position: center;
+  background-size: cover;
+}
+
+body {
+  background-color: rgb(255, 252, 247);
+}
+
+footer {
+  background-color: rgb(255, 243, 213);
+  padding: 10px;
+  margin-top: auto;
+}
+
+h1 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+  font-family: 'HiraMinProN-W3', '游明朝体', 'Times New Roman', serif;
+}
+
+.navbar-brand img {
+  max-height: 68px; /* 任意の値に変更してください */
+}
+
 .menu-color {
-  background-color: rgb(70, 53, 32);
+	width:100%;/*横幅指定*/
+  background-color: rgb(63, 48, 29);
+  padding-left: 5px;
+}
+
+.menu-color.fixed {
+  position: fixed;/*fixedを設定して固定*/
+  z-index: 999;/*最前面へ*/
+  top:0;/*位置指定*/
+  left:0;/*位置指定*/
+}
+
+.collapse.navbar-collapse{
+  margin-right: 8px;
+}
+
+.accordion-button.collapsed{
+  color: rgb(70, 53, 32);
+}
+
+.btn.btn-outline-secondary{
+  color: rgb(70, 53, 32);
+}
+
+.btn.btn-outline-secondary.vv{
+  color: rgb(70, 53, 32);
+  background-color: rgb(255, 243, 213);
+}
+
+.btn.btn-outline-secondary.colr{
+  color: rgb(193, 20, 20);
+  background-color: rgb(255, 243, 213);
 }
 
 .nav-item .nav-link.active.tabbak-color {
   background-color: rgb(60, 154, 226);
 }
+
 .nav-item .nav-link.active.tabbak2-color {
   background-color: rgb(234, 86, 157);
+}
+
+.nav-item .nav-link.active.tabbak3-color {
+  background-color: rgb(255, 243, 213);
+  color: rgb(70, 53, 32);
 }
 
 .btn-icon {
@@ -14,4 +85,65 @@
   border: none;
   background-color: transparent;
   padding: 0;
+}
+
+/* タブレット*/
+@media (max-width: 1024px) {
+  .top-wrapper {
+    background-image: url("toptaiwan.jpg");
+    height: calc(100vh - 800px);
+    background-position: center;
+    background-size: cover;
+  }
+}
+
+/* スマホ */
+@media (max-width: 599px) {
+  .top-wrapper {
+    background-image: url("toptaiwan.jpg");
+    height: calc(100vh - 700px);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .navbar-brand img {
+    max-height: 50px; /* 任意の値に変更してください */
+  }
+
+  .navbar-toggler{
+    margin-right: 8px;
+  }
+
+  .text-center.mb-3.mb-sm-0 .btn-primary {
+    margin-right: 0px !important;
+  }
+
+  .collapse.navbar-collapse{
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 380px) {
+  .top-wrapper {
+    background-image: url("toptaiwan.jpg");
+    height: calc(100vh - 520px);
+    background-position: center;
+    background-size: cover;
+  }
+
+  .navbar-brand img {
+    max-height: 40px; /* 任意の値に変更してください */
+  }
+
+  .navbar-toggler{
+    margin-right: 8px;
+  }
+
+  .text-center.mb-3.mb-sm-0 .btn-primary {
+    margin-right: 0px !important;
+  }
+
+  .collapse.navbar-collapse{
+    margin-right: 0px;
+  }
 }

@@ -1,3 +1,4 @@
+<h1>Phrases</h1>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
     <button class="nav-link active tabbak-color" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">日常生活</button>
@@ -8,140 +9,178 @@
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col"></th>
-          <th scope="col">単語</th>
-          <th scope="col">ボポモフォ</th>
-          <th scope="col">意味</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <% index = 1 %>
-      <% @requests.each do |request| %>
-      <tbody>
-        <tr>
-          <th scope="row"><%= index %></th>
-          <td><button id="playButton" type="button" class="btn btn-light btn-icon"><i class="bi bi-volume-up"></i></button></td>
-          <td><%= request.title %></td>
-          <td><%= request.bopomofo %></td>
-          <td><%= request.mean %></td>
-          <td>
-            <% if current_user.bookmark?(request) %>
-              <%= link_to bookmark_path(current_user.bookmarks.find_by(request_id: request.id)), data: { turbo_method: :delete } do %>
-                <button type="button" class="btn btn-outline-secondary">リストから削除</button>
-              <% end %>
-            <% else %>
-              <div class="accordion" id="bookmarkForm<%= request.id %>">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="bookmarkFormHeading<%= request.id %>">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse<%= request.id %>" aria-expanded="false" aria-controls="bookmarkFormCollapse<%= request.id %>">
-                      リストに追加
-                    </button>
-                  </h2>
-                  <div id="bookmarkFormCollapse<%= request.id %>" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading<%= request.id %>" data-bs-parent="#bookmarkForm<%= request.id %>">
-                    <div class="accordion-body">
-                      <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
-                        <div class="mb-3">
-                          <%= f.label :category_id, "カテゴリー" %>
-                          <% if current_user.categories.blank? %>
-                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
-                            <p class="text-danger" style="font-size: 0.9em;" >リスト一覧ページから<br>カテゴリーの追加をしてください。</p>
-                          <% else %>
-                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
-                          <% end %>
-                        </div>
-                        <%= f.hidden_field :request_id, value: request.id %>
-                        <%= f.submit "追加", class: "btn btn-outline-secondary" %>
-                      <% end %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 5%;"></th>
+            <th scope="col" style="width: 5%;"></th>
+            <th scope="col" style="width: 20%;">単語</th>
+            <th scope="col" style="width: 20%;">ボポモフォ</th>
+            <th scope="col" style="width: 30%;">意味</th>
+            <th scope="col" style="width: 10%;"></th>
+            <th scope="col" style="width: 10%;"></th>
+          </tr>
+        </thead>
+        <% index = 1 %>
+        <% @requests.each do |request| %>
+        <tbody>
+          <tr>
+            <th scope="row" style="white-space: nowrap;"><%= index %></th>
+            <td style="white-space: nowrap;"><button id="playButton" type="button" class="btn btn-light btn-icon"><i class="bi bi-volume-up"></i></button></td>
+            <td style="white-space: nowrap;"><%= request.title %></td>
+            <td style="white-space: nowrap;"><%= request.bopomofo %></td>
+            <td style="white-space: nowrap;"><%= request.mean %></td>
+            <td style="white-space: nowrap;">
+              <% if current_user.bookmark?(request) %>
+                <%= link_to bookmark_path(current_user.bookmarks.find_by(request_id: request.id)), data: { turbo_method: :delete } do %>
+                  <button type="button" class="btn btn-outline-secondary">リストから削除</button>
+                <% end %>
+              <% else %>
+                <div class="accordion" id="bookmarkForm<%= request.id %>">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="bookmarkFormHeading<%= request.id %>">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse<%= request.id %>" aria-expanded="false" aria-controls="bookmarkFormCollapse<%= request.id %>">
+                        リストに追加
+                      </button>
+                    </h2>
+                    <div id="bookmarkFormCollapse<%= request.id %>" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading<%= request.id %>" data-bs-parent="#bookmarkForm<%= request.id %>">
+                      <div class="accordion-body">
+                        <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
+                          <div class="mb-3">
+                            <%= f.label :category_id, "カテゴリー" %>
+                            <% if current_user.categories.blank? %>
+                              <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                              <p class="text-danger" style="font-size: 0.9em;" >リスト一覧ページから<br>カテゴリーの追加をしてください。</p>
+                            <% else %>
+                              <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                            <% end %>
+                          </div>
+                          <%= f.hidden_field :request_id, value: request.id %>
+                          <%= f.submit "追加", class: "btn btn-outline-secondary" %>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to request_path(request) do %>
-              <button type="button" class="btn btn-secondary">詳細</button>
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-      <% index += 1 %>
-      <% end %>
-    </table>
+              <% end %>
+            </td>
+            <td style="white-space: nowrap;">
+              <%= link_to request_path(request) do %>
+                <button type="button" class="btn btn-secondary">詳細</button>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+        <% index += 1 %>
+        <% end %>
+      </table>
+    </div>
   </div>
   <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col"></th>
-          <th scope="col">単語</th>
-          <th scope="col">ボポモフォ</th>
-          <th scope="col">意味</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <% index = 1 %>
-      <% @requests1.each do |request| %>
-      <tbody>
-        <tr>
-          <th scope="row"><%= index %></th>
-          <td><button id="playButton" type="button" class="btn btn-light btn-icon"><i class="bi bi-volume-up"></i></button></td>
-          <td><%= request.title %></td>
-          <td><%= request.bopomofo %></td>
-          <td><%= request.mean %></td>
-          <td>
-            <% if current_user.bookmark?(request) %>
-              <%= link_to bookmark_path(current_user.bookmarks.find_by(request_id: request.id)), data: { turbo_method: :delete } do %>
-                <button type="button" class="btn btn-outline-secondary">リストから削除</button>
-              <% end %>
-            <% else %>
-              <div class="accordion" id="bookmarkForm<%= request.id %>">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="bookmarkFormHeading<%= request.id %>">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse<%= request.id %>" aria-expanded="false" aria-controls="bookmarkFormCollapse<%= request.id %>">
-                      リストに追加
-                    </button>
-                  </h2>
-                  <div id="bookmarkFormCollapse<%= request.id %>" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading<%= request.id %>" data-bs-parent="#bookmarkForm<%= request.id %>">
-                    <div class="accordion-body">
-                      <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
-                        <div class="mb-3">
-                          <%= f.label :category_id, "カテゴリー" %>
-                          <% if current_user.categories.blank? %>
-                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
-                            <p class="text-danger" style="font-size: 0.9em;" >リスト一覧ページから<br>カテゴリーの追加をしてください。</p>
-                          <% else %>
-                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
-                          <% end %>
-                        </div>
-                        <%= f.hidden_field :request_id, value: request.id %>
-                        <%= f.submit "追加", class: "btn btn-outline-secondary" %>
-                      <% end %>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" style="width: 5%;"></th>
+            <th scope="col" style="width: 5%;"></th>
+            <th scope="col" style="width: 20%;">単語</th>
+            <th scope="col" style="width: 20%;">ボポモフォ</th>
+            <th scope="col" style="width: 30%;">意味</th>
+            <th scope="col" style="width: 10%;"></th>
+            <th scope="col" style="width: 10%;"></th>
+          </tr>
+        </thead>
+        <% index = 1 %>
+        <% @requests1.each do |request| %>
+        <tbody>
+          <tr>
+            <th scope="row" style="white-space: nowrap;"><%= index %></th>
+            <td style="white-space: nowrap;"><button id="playButton" type="button" class="btn btn-light btn-icon"><i class="bi bi-volume-up"></i></button></td>
+            <td style="white-space: nowrap;"><%= request.title %></td>
+            <td style="white-space: nowrap;"><%= request.bopomofo %></td>
+            <td style="white-space: nowrap;"><%= request.mean %></td>
+            <td style="white-space: nowrap;">
+              <% if current_user.bookmark?(request) %>
+                <%= link_to bookmark_path(current_user.bookmarks.find_by(request_id: request.id)), data: { turbo_method: :delete } do %>
+                  <button type="button" class="btn btn-outline-secondary">リストから削除</button>
+                <% end %>
+              <% else %>
+                <div class="accordion" id="bookmarkForm<%= request.id %>">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="bookmarkFormHeading<%= request.id %>">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse<%= request.id %>" aria-expanded="false" aria-controls="bookmarkFormCollapse<%= request.id %>">
+                        リストに追加
+                      </button>
+                    </h2>
+                    <div id="bookmarkFormCollapse<%= request.id %>" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading<%= request.id %>" data-bs-parent="#bookmarkForm<%= request.id %>">
+                      <div class="accordion-body">
+                        <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
+                          <div class="mb-3">
+                            <%= f.label :category_id, "カテゴリー" %>
+                            <% if current_user.categories.blank? %>
+                              <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                              <p class="text-danger" style="font-size: 0.9em;" >リスト一覧ページから<br>カテゴリーの追加をしてください。</p>
+                            <% else %>
+                              <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                            <% end %>
+                          </div>
+                          <%= f.hidden_field :request_id, value: request.id %>
+                          <%= f.submit "追加", class: "btn btn-outline-secondary" %>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to request_path(request) do %>
-              <button type="button" class="btn btn-secondary">詳細</button>
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-      <% index += 1 %>
-      <% end %>
-    </table>
+              <% end %>
+            </td>
+            <td style="white-space: nowrap;">
+              <%= link_to request_path(request) do %>
+                <button type="button" class="btn btn-secondary">詳細</button>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+        <% index += 1 %>
+        <% end %>
+      </table>
+    </div>
   </div>
-  <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">...</div>
-  <div class="tab-pane fade" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">...</div>
+</div>
+<h1>Words</h1>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active tabbak3-color" id="ome-tab" data-bs-toggle="tab" data-bs-target="#ome-tab-pane" type="button" role="tab" aria-controls="ome-tab-pane" aria-selected="true">数</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tabbak3-color" id="rofile-tab" data-bs-toggle="tab" data-bs-target="#rofile-tab-pane" type="button" role="tab" aria-controls="rofile-tab-pane" aria-selected="false">月・曜日・時制</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tabbak3-color" id="ontact-tab" data-bs-toggle="tab" data-bs-target="#ontact-tab-pane" type="button" role="tab" aria-controls="ontact-tab-pane" aria-selected="false">人</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tabbak3-color" id="place-tab" data-bs-toggle="tab" data-bs-target="#place-tab-pane" type="button" role="tab" aria-controls="place-tab-pane" aria-selected="false">場所</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tabbak3-color" id="thing-tab" data-bs-toggle="tab" data-bs-target="#thing-tab-pane" type="button" role="tab" aria-controls="thing-tab-pane" aria-selected="false">もの</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="ome-tab-pane" role="tabpanel" aria-labelledby="ome-tab" tabindex="0">
+    <%= render partial: 'requests_table', locals: { requests: @requests2 } %>
+  </div>
+  <div class="tab-pane fade" id="rofile-tab-pane" role="tabpanel" aria-labelledby="rofile-tab" tabindex="0">
+    <%= render partial: 'requests_table', locals: { requests: @requests3 } %>
+  </div>
+  <div class="tab-pane fade" id="ontact-tab-pane" role="tabpanel" aria-labelledby="ontact-tab" tabindex="0">
+    <%= render partial: 'requests_table', locals: { requests: @requests4 } %>
+  </div>
+  <div class="tab-pane fade" id="place-tab-pane" role="tabpanel" aria-labelledby="place-tab" tabindex="0">
+    <%= render partial: 'requests_table', locals: { requests: @requests5 } %>
+  </div>
+  <div class="tab-pane fade" id="thing-tab-pane" role="tabpanel" aria-labelledby="thing-tab" tabindex="0">
+    <%= render partial: 'requests_table', locals: { requests: @requests6 } %>
+  </div>
 </div>
 
 <script>

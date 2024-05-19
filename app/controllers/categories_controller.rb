@@ -6,9 +6,9 @@ class CategoriesController < ApplicationController
   def create
     @category = current_user.categories.build(category_params)
     if @category.save
-      redirect_to bookmarks_path, success: t('defaults.flash_message.created')
+      redirect_to bookmarks_path, success: "カテゴリーを作成しました"
     else
-      flash.now[:danger] = t('defaults.flash_message.not_created')
+      flash.now[:danger] = "カテゴリーの作成に失敗しました"
       render :new, status: :unprocessable_entity
     end
   end
@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = current_user.categories.find(params[:category_id])
     @category.destroy
-    redirect_to bookmarks_path, success: "カテゴリーを削除しました"
+    redirect_to bookmarks_path, status: :see_other, success: "カテゴリーを削除しました"
   end
 
   private

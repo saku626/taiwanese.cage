@@ -14,9 +14,10 @@ class VocabulariesController < ApplicationController
     @vocabulary = current_user.vocabularies.build(vocabulary_params)
     @category = Category.where(user_id: current_user.id)
     if @vocabulary.save
-      redirect_to @vocabulary, success: "ボキャブラリーが作成されました"
+      redirect_to @vocabulary, success: "単語を作成しました"
     else
-      render :new
+      flash.now[:danger] = "単語の作成に失敗しました"
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -26,15 +27,16 @@ class VocabulariesController < ApplicationController
 
   def update
     if @vocabulary.update(vocabulary_params)
-      redirect_to @vocabulary, success: "ボキャブラリーが更新されました"
+      redirect_to @vocabulary, success: "単語を更新しました"
     else
-      render :edit
+      flash.now[:danger] = "単語の更新に失敗しました"
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @vocabulary.destroy!
-    redirect_to vocabularies_path, success: "ボキャブラリーが削除されました"
+    redirect_to vocabularies_path, status: :see_other, success: "単語を削除しました"
   end
   
   private

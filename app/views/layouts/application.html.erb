@@ -12,11 +12,38 @@
   </head>
 
   <body>
+   <div class="containef">
     <% if logged_in? %>
       <%= render 'shared/header' %>
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
+    <%= render 'shared/flash_message' %>
     <%= yield %>
+    <%= render 'shared/footer' %>
+   </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script>
+          //スクロールすると上部に固定させるための設定を関数でまとめる
+      function FixedAnime() {
+        var headerH = $('.top-wrapper').outerHeight(true);
+        var scroll = $(window).scrollTop();
+        if (scroll >= headerH){//headerの高さ以上になったら
+            $('.menu-color').addClass('fixed');//fixedというクラス名を付与
+          }else{//それ以外は
+            $('.menu-color').removeClass('fixed');//fixedというクラス名を除去
+          }
+      }
+
+      // 画面をスクロールをしたら動かしたい場合の記述
+      $(window).scroll(function () {
+        FixedAnime();/* スクロール途中からヘッダーを出現させる関数を呼ぶ*/
+      });
+
+      // ページが読み込まれたらすぐに動かしたい場合の記述
+      $(window).on('load', function () {
+        FixedAnime();/* スクロール途中からヘッダーを出現させる関数を呼ぶ*/
+      });
+    </script>
   </body>
 </html>
