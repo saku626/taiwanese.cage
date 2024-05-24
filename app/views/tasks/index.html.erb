@@ -1,0 +1,15 @@
+<% logged_in_today = logged_in? && current_user.last_login_at.present? && current_user.last_login_at.to_date == Date.today %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-lg-8 mx-auto">
+        <div class="d-flex align-items-center justify-content-between">
+            <p>・1日1回ログインする</p>
+            <% if logged_in_today %>
+            <span><i class="bi bi-check-square-fill"></i> Clear!</span>
+            <% else %>
+            <span><i class="bi bi-check-square"></i></span>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
