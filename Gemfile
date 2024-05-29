@@ -74,3 +74,4 @@ group :test do
 
 end
 gem 'sorcery'
+gem 'simple_calendar'
