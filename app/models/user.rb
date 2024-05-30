@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :bookmark_requests, through: :bookmarks, source: :request
   has_many :categories, dependent: :destroy
   has_many :vocabularies, dependent: :destroy
+  has_many :task_completions, dependent: :destroy
 
   def own?(object)
     self.id == object.user_id #selfは省略できる

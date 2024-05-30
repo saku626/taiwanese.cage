@@ -17,7 +17,7 @@
             <span><i class="bi bi-check-square"></i></span>
           <% end %>
           <%= month_calendar do |date| %>
-            <div class="<%= 'highlight' if date == Time.zone.today && @both_conditions_met %>">
+            <div class="<%= 'highlight' if @task_completions.include?(date) %>">
               <%= date.day %>
             </div>
           <% end %>
