@@ -75,3 +75,4 @@ group :test do
 end
 gem 'sorcery'
 gem 'simple_calendar'
+gem 'rails-i18n', '~> 7.0.0'
