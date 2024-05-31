@@ -17,8 +17,33 @@
   text-align: center;
 }
 
+.calendar-container{
+  margin-right: 70px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  padding: 20px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .5);
+}
+
+.markk {
+  font-family: 'HiraMinProN-W3', '游明朝体', 'Times New Roman', serif;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.bac{
+  background-color: white;
+  margin-bottom: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 body {
   background-color: rgb(255, 252, 247);
+}
+
+p{
+  font-family: 'HiraMinProN-W3', '游明朝体', 'Times New Roman', serif;
 }
 
 footer {
