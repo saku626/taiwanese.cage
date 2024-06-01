@@ -14,6 +14,8 @@ class VocabulariesController < ApplicationController
     @vocabulary = current_user.vocabularies.build(vocabulary_params)
     @category = Category.where(user_id: current_user.id)
     if @vocabulary.save
+      # 単語作成に成功した場合、ユーザーの last_vocabulary_created_at を日本時間で更新する
+      current_user.update(last_vocabulary_created_at: Time.zone.now)
       redirect_to @vocabulary, success: "単語を作成しました"
     else
       flash.now[:danger] = "単語の作成に失敗しました"
@@ -24,6 +26,7 @@ class VocabulariesController < ApplicationController
   def edit
     @category = Category.where(user_id: current_user.id)
   end
+
 
   def update
     if @vocabulary.update(vocabulary_params)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_01_143930) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_30_130542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,6 +47,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_01_143930) do
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
+  create_table "task_completions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "date"], name: "index_task_completions_on_user_id_and_date", unique: true
+    t.index ["user_id"], name: "index_task_completions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -54,6 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_01_143930) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_login_at"
+    t.datetime "last_vocabulary_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
@@ -76,6 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_01_143930) do
   add_foreign_key "categories", "users"
   add_foreign_key "requests", "categories"
   add_foreign_key "requests", "users"
+  add_foreign_key "task_completions", "users"
   add_foreign_key "vocabularies", "categories"
   add_foreign_key "vocabularies", "users"
 end

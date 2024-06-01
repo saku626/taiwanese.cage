@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-lg-9 mx-auto">
+      <h1>今日の課題</h1>
+      <div class="d-flex align-items-center justify-content-between flex-wrap flex-md-nowrap bac">
+        <div class="calendar-container">
+          <%= month_calendar do |date| %>
+            <div class="<%= 'highlight' if @task_completions.include?(date) %>">
+              <%= date.day %>
+            </div>
+          <% end %>
+        </div>
+        <div class="task-container">
+          <div class="markk">
+            <p>以下の課題をクリアしてカレンダーに色を付けましょう!</p>
+          </div>
+          <div class="markk">
+            <p><i class="bi bi-calendar-event"></i>1日1回ログインする</p>
+            <% if @logged_in_today %>
+              <span><i class="bi bi-check-square-fill"></i>Clear!</span>
+            <% else %>
+              <span><i class="bi bi-check-square"></i></span>
+            <% end %>
+          </div>
+          <div class="markk">
+            <p><i class="bi bi-calendar-event"></i>1日1回単語を作成する</p>
+            <% if @word_created_today %>
+              <span><i class="bi bi-check-square-fill"></i>Clear!</span>
+            <% else %>
+              <span><i class="bi bi-check-square"></i></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
