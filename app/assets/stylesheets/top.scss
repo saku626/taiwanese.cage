@@ -18,7 +18,7 @@
 }
 
 .calendar-container{
-  margin-right: 70px;
+  margin-right: 0px;
   margin-top: 30px;
   margin-bottom: 40px;
   padding: 20px;
@@ -29,6 +29,7 @@
   font-family: 'HiraMinProN-W3', '游明朝体', 'Times New Roman', serif;
   font-size: 18px;
   margin-bottom: 40px;
+  margin-right: 30px;
 }
 
 .bac{
@@ -126,6 +127,14 @@ h1 {
     background-position: center;
     background-size: cover;
   }
+
+  .markk {
+    font-family: 'HiraMinProN-W3', '游明朝体', 'Times New Roman', serif;
+    font-size: 18px;
+    margin-bottom: 40px;
+    margin-right: 30px;
+    margin-left: 30px;
+  }
 }
 
 /* スマホ */
@@ -151,6 +160,28 @@ h1 {
 
   .collapse.navbar-collapse{
     margin-right: 0px;
+  }
+
+  .calendar-container {
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .5);
+  }
+
+  .task-container {
+    width: 100%;
+  }
+
+  .markk {
+    font-family: 'HiraMinProN-W3', '游明朝体', 'Times New Roman', serif;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .bac {
+    flex-direction: column;
   }
 }
 
