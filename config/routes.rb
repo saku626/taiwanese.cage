@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'password_resets/create'
+  get 'password_resets/edit'
+  get 'password_resets/update'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root "static_pages#top"
   # Defines the root path route ("/")
@@ -8,6 +11,7 @@ Rails.application.routes.draw do
   resources :bookmarks, only: %i[index create destroy]
   resources :vocabularies, only: %i[show new create edit update destroy]
   resources :tasks, only: %i[index]
+  resources :password_resets, only: %i[new create edit update]
   
   resources :categories, only: [:new, :create, :destroy] do
     get :delete_confirm, on: :collection
