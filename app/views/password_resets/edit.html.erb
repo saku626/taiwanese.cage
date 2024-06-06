@@ -3,16 +3,21 @@
     <div class=" col-md-10 col-lg-8 mx-auto">
       <h1 class="mt-5">パスワード再設定</h1>
       <%= form_with model: @user, url: password_reset_path(@token) do |f| %>
-        <%= f.label :email %>
-        <%= @user.email %>
-
-        <%= f.label :password, "パスワード"  %>
-        <%= f.password_field :password %>
-
-        <%= f.label :password_confirmation, "パスワード再入力"  %>
-        <%= f.password_field :password_confirmation %>
-
-        <%= f.submit 'リセット' %>
+        <div class="mb-3">
+          <%= f.label :email %>
+          <%= @user.email %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password, "パスワード"  %>
+          <%= f.password_field :password, class: "form-control"  %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :password_confirmation, "パスワード再入力"  %>
+          <%= f.password_field :password_confirmation, class: "form-control"  %>
+        </div>
+        <div class="d-grid gap-2 col-3 mx-auto mb-5">
+          <%= f.submit 'リセット', class: "btn btn-primary"  %>
+        </div>
       <% end %>
     </div>
   </div>
