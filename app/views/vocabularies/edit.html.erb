@@ -4,23 +4,23 @@
       <h1>単語の編集</h1>
       <%= form_with(model: @vocabulary, class: "edit_vocabulary", local: true) do |f| %>
         <div class="mb-3">
-          <%= f.label :台湾華語 %>
+          <%= f.label :title, "台湾華語" %>
           <%= f.text_field :title, class: "form-control" %>
         </div>
         <div class="mb-3">
-          <%= f.label :注音符号（ボポモフォ） %>
+          <%= f.label :bopomofo, "注音符号（ボポモフォ）" %>
           <%= f.text_field :bopomofo, class: "form-control" %>
         </div>
         <div class="mb-3">
-          <%= f.label :意味 %>
+          <%= f.label :mean, "意味" %>
           <%= f.text_area :mean, class: "form-control" %>
         </div>
         <div class="mb-3">
-          <%= f.label :カテゴリー %>
+          <%= f.label :category_id, "カテゴリー" %>
           <%= f.collection_select :category_id, @category, :id, :name %>
         </div>
         <div class="mb-3">
-          <%= f.label :説明（任意） %>
+          <%= f.label :body, "説明（任意）" %>
           <%= f.text_area :body, class: "form-control", rows: 10, style: "height: 200px" %>
         </div>
         <%= f.submit "更新", class: "btn btn-primary" %>
