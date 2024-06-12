@@ -25,25 +25,43 @@
    </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script>
-          //スクロールすると上部に固定させるための設定を関数でまとめる
+       // 固定ヘッダーのアニメーションを処理する関数
       function FixedAnime() {
         var headerH = $('.top-wrapper').outerHeight(true);
         var scroll = $(window).scrollTop();
-        if (scroll >= headerH){//headerの高さ以上になったら
-            $('.menu-color').addClass('fixed');//fixedというクラス名を付与
-          }else{//それ以外は
-            $('.menu-color').removeClass('fixed');//fixedというクラス名を除去
-          }
+        if (scroll >= headerH) { // ヘッダーの高さ以上にスクロールしたら
+          $('.menu-color').addClass('fixed'); // fixedクラスを追加
+        } else {
+          $('.menu-color').removeClass('fixed'); // fixedクラスを除去
+        }
       }
 
-      // 画面をスクロールをしたら動かしたい場合の記述
+      // デバイスがモバイルかどうかを確認する関数
+      function isMobileDevice() {
+        return window.innerWidth <= 599;
+      }
+
+      // スクロール時に固定ヘッダーアニメーションを実行（モバイルデバイスの場合のみ）
       $(window).scroll(function () {
-        FixedAnime();/* スクロール途中からヘッダーを出現させる関数を呼ぶ*/
+        if (isMobileDevice()) {
+          FixedAnime(); // モバイルデバイスの場合のみ関数を呼び出す
+        }
       });
 
-      // ページが読み込まれたらすぐに動かしたい場合の記述
+      // ページロード時に固定ヘッダーアニメーションを実行（モバイルデバイスの場合のみ）
       $(window).on('load', function () {
-        FixedAnime();/* スクロール途中からヘッダーを出現させる関数を呼ぶ*/
+        if (isMobileDevice()) {
+          FixedAnime(); // モバイルデバイスの場合のみ関数を呼び出す
+        }
+      });
+
+      // リサイズ時に固定ヘッダーアニメーションを実行（モバイルデバイスの場合のみ）
+      $(window).on('resize', function () {
+        if (isMobileDevice()) {
+          FixedAnime(); // モバイルデバイスの場合のみ関数を呼び出す
+        } else {
+          $('.menu-color').removeClass('fixed'); // デスクトップの場合はfixedクラスを除去
+        }
       });
     </script>
   </body>
