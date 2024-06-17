@@ -67,7 +67,6 @@ p{
 }
 
 footer {
-  background-color: rgb(255, 243, 213);
   background: linear-gradient(rgb(241, 231, 192), 10%, rgb(255, 243, 213));
   padding: 10px;
   margin-top: auto;
@@ -86,7 +85,7 @@ h1 {
 
 .menu-color {
 	width:100%;/*横幅指定*/
-  background-color: rgb(63, 48, 29);
+  background: linear-gradient(rgb(54, 40, 22), rgb(63, 48, 29), rgb(63, 48, 29), rgb(62, 49, 29));
   padding-left: 5px;
 }
 
@@ -180,6 +179,14 @@ h1 {
     background-size: cover;
   }
 
+  .custom-width {
+    width: 60%;
+  }
+
+  .custom-margin {
+    margin-bottom: 1rem; /* ここで空白の大きさを調整できます */
+  }
+  
   .navbar-brand img {
     max-height: 50px; /* 任意の値に変更してください */
   }

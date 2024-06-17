@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  skip_before_action :require_login, only: %i[top]
+  skip_before_action :require_login, only: %i[top privacy_policy terms_of_service]
   
   def top
     target_category = Category.find_by(name: '日常生活')
@@ -16,5 +16,11 @@ class StaticPagesController < ApplicationController
     @requests5 = Request.where(category_id: target_category5.id)
     target_category6 = Category.find_by(name: 'もの')
     @requests6 = Request.where(category_id: target_category6.id)
+  end
+
+  def privacy_policy
+  end
+
+  def terms_of_service
   end
 end
