@@ -174,7 +174,7 @@ h1 {
 @media (max-width: 599px) {
   .top-wrapper {
     background-image: url("toptaiwan.jpg");
-    height: calc(100vh - 700px);
+    height: 20vh;
     background-position: center;
     background-size: cover;
   }
@@ -227,12 +227,6 @@ h1 {
 }
 
 @media (max-width: 380px) {
-  .top-wrapper {
-    background-image: url("toptaiwan.jpg");
-    height: calc(100vh - 520px);
-    background-position: center;
-    background-size: cover;
-  }
 
   .navbar-brand img {
     max-height: 40px; /* 任意の値に変更してください */
