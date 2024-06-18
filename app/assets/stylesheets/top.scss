@@ -20,7 +20,7 @@
 .calendar-container{
   margin-right: 0px;
   margin-top: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   padding: 20px;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .5);
 }
@@ -39,8 +39,27 @@
   padding-right: 10px;
 }
 
+.senter{
+  text-align: center;
+}
+
+.text-hover-dark:hover {
+  color: #000 !important;
+}
+
 body {
   background-color: rgb(255, 252, 247);
+  background: linear-gradient(
+      217deg,
+      rgba(242, 243, 246, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(127deg, rgba(255, 254, 251, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(255, 245, 239, 0.8), rgba(0, 0, 255, 0) 70.71%);
+}
+
+.spese{
+  margin-top: 30px;
 }
 
 p{
@@ -48,13 +67,13 @@ p{
 }
 
 footer {
-  background-color: rgb(255, 243, 213);
+  background: linear-gradient(rgb(241, 231, 192), 10%, rgb(255, 243, 213));
   padding: 10px;
   margin-top: auto;
 }
 
 h1 {
-  margin-top: 30px;
+  margin-top: 40px;
   margin-bottom: 20px;
   margin-left: 30px;
   font-family: 'HiraMinProN-W3', '游明朝体', 'Times New Roman', serif;
@@ -66,7 +85,7 @@ h1 {
 
 .menu-color {
 	width:100%;/*横幅指定*/
-  background-color: rgb(63, 48, 29);
+  background: linear-gradient(rgb(54, 40, 22), rgb(63, 48, 29), rgb(63, 48, 29), rgb(62, 49, 29));
   padding-left: 5px;
 }
 
@@ -97,6 +116,20 @@ h1 {
 .btn.btn-outline-secondary.colr{
   color: rgb(193, 20, 20);
   background-color: rgb(255, 243, 213);
+}
+
+.btn.btn-primary.green{
+  background-color: rgb(25, 190, 110);
+  border-color: rgb(25, 190, 110);
+}
+
+.btn.btn-primary.red{
+  background-color: rgb(231, 63, 48);
+  border-color: rgb(231, 63, 48);
+}
+
+.senter.bor{
+  text-decoration-line: none;
 }
 
 .nav-item .nav-link.active.tabbak-color {
@@ -141,11 +174,19 @@ h1 {
 @media (max-width: 599px) {
   .top-wrapper {
     background-image: url("toptaiwan.jpg");
-    height: calc(100vh - 700px);
+    height: 20vh;
     background-position: center;
     background-size: cover;
   }
 
+  .custom-width {
+    width: 60%;
+  }
+
+  .custom-margin {
+    margin-bottom: 1rem; /* ここで空白の大きさを調整できます */
+  }
+  
   .navbar-brand img {
     max-height: 50px; /* 任意の値に変更してください */
   }
@@ -186,12 +227,6 @@ h1 {
 }
 
 @media (max-width: 380px) {
-  .top-wrapper {
-    background-image: url("toptaiwan.jpg");
-    height: calc(100vh - 520px);
-    background-position: center;
-    background-size: cover;
-  }
 
   .navbar-brand img {
     max-height: 40px; /* 任意の値に変更してください */
