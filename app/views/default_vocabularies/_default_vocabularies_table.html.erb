@@ -1,0 +1,67 @@
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 5%;"></th>
+        <th scope="col" style="width: 5%;"></th>
+        <th scope="col" style="width: 20%;">単語</th>
+        <th scope="col" style="width: 20%;">ボポモフォ</th>
+        <th scope="col" style="width: 30%;">意味</th>
+        <th scope="col" style="width: 10%;"></th>
+        <th scope="col" style="width: 10%;"></th>
+      </tr>
+    </thead>
+    <% index = 1 %>
+    <tbody>
+      <% default_vocabularies.each do |default_vocabulary| %>
+        <tr>
+          <th scope="row" style="white-space: nowrap;"><%= index %></th>
+          <td style="white-space: nowrap;"><button id="playButton" type="button" class="btn btn-light btn-icon"><i class="bi bi-volume-up"></i></button></td>
+          <td style="white-space: nowrap;"><%= default_vocabulary.title %></td>
+          <td style="white-space: nowrap;"><%= default_vocabulary.bopomofo %></td>
+          <td style="white-space: nowrap;"><%= default_vocabulary.mean %></td>
+          <td style="white-space: nowrap;">
+            <% if current_user.bookmark?(default_vocabulary) %>
+              <%= link_to bookmark_path(current_user.bookmarks.find_by(default_vocabulary_id: default_vocabulary.id)), data: { turbo_method: :delete } do %>
+                <button type="button" class="btn btn-outline-secondary">My会話帳から削除</button>
+              <% end %>
+            <% else %>
+              <div class="accordion" id="bookmarkForm<%= default_vocabulary.id %>">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="bookmarkFormHeading<%= default_vocabulary.id %>">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#bookmarkFormCollapse<%= default_vocabulary.id %>" aria-expanded="false" aria-controls="bookmarkFormCollapse<%= default_vocabulary.id %>">
+                      My会話帳に追加
+                    </button>
+                  </h2>
+                  <div id="bookmarkFormCollapse<%= default_vocabulary.id %>" class="accordion-collapse collapse" aria-labelledby="bookmarkFormHeading<%= default_vocabulary.id %>" data-bs-parent="#bookmarkForm<%= default_vocabulary.id %>">
+                    <div class="accordion-body">
+                      <%= form_with url: bookmarks_path, method: :post, local: true do |f| %>
+                        <div class="mb-3">
+                          <%= f.label :category_id, "カテゴリー" %>
+                          <% if current_user.categories.blank? %>
+                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                            <p class="text-danger" style="font-size: 0.9em;" >My会話帳から<br>カテゴリーの追加をしてください。</p>
+                          <% else %>
+                            <%= f.collection_select :category_id, current_user.categories, :id, :name, {}, {class: "form-control"} %>
+                          <% end %>
+                        </div>
+                        <%= f.hidden_field :default_vocabulary_id, value: default_vocabulary.id %>
+                        <%= f.submit "追加", class: "btn btn-outline-secondary" %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </td>
+          <td style="white-space: nowrap;">
+            <%= link_to default_vocabulary_path(default_vocabulary) do %>
+              <button type="button" class="btn btn-secondary">詳細</button>
+            <% end %>
+          </td>
+        </tr>
+        <% index += 1 %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
