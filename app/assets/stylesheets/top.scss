@@ -100,6 +100,10 @@ h2,h3,h4 {
   margin-bottom: 40px;
 }
 
+.card.mb-4.mx-auto.ff {
+  max-width: 660px; /* スマホサイズでカード内の余白を少し追加 */
+}
+
 .img1 {
   width: 50px;
   height: auto;
@@ -281,6 +285,16 @@ h2,h3,h4 {
 
   .bac {
     flex-direction: column;
+  }
+
+  .card.mb-4.mx-auto.ff {
+    max-width: 280px; /* スマホサイズでカード内の余白を少し追加 */
+  }
+
+  .font1 {
+    font-size: 30px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
