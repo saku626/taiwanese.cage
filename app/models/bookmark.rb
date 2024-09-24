@@ -1,6 +1,6 @@
 class Bookmark < ApplicationRecord
   belongs_to :user
-  belongs_to :request
+  belongs_to :default_vocabulary
 
-  validates :user_id, uniqueness: { scope: :request_id }
+  validates :user_id, uniqueness: { scope: :default_vocabulary_id }
 end
