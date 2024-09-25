@@ -1,0 +1,86 @@
+<h1>Phrases</h1>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active tabbak-color" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">日常生活</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tabbak2-color" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">ビジネス</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies } %>
+  </div>
+  <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies1 } %>
+  </div>
+</div>
+
+<h1>Words</h1>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active tabbak3-color" id="ome-tab" data-bs-toggle="tab" data-bs-target="#ome-tab-pane" type="button" role="tab" aria-controls="ome-tab-pane" aria-selected="true">数</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tabbak3-color" id="rofile-tab" data-bs-toggle="tab" data-bs-target="#rofile-tab-pane" type="button" role="tab" aria-controls="rofile-tab-pane" aria-selected="false">月・曜日・時制</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tabbak3-color" id="ontact-tab" data-bs-toggle="tab" data-bs-target="#ontact-tab-pane" type="button" role="tab" aria-controls="ontact-tab-pane" aria-selected="false">人</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tabbak3-color" id="place-tab" data-bs-toggle="tab" data-bs-target="#place-tab-pane" type="button" role="tab" aria-controls="place-tab-pane" aria-selected="false">場所</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link tabbak3-color" id="thing-tab" data-bs-toggle="tab" data-bs-target="#thing-tab-pane" type="button" role="tab" aria-controls="thing-tab-pane" aria-selected="false">もの</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="ome-tab-pane" role="tabpanel" aria-labelledby="ome-tab" tabindex="0">
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies2 } %>
+  </div>
+  <div class="tab-pane fade" id="rofile-tab-pane" role="tabpanel" aria-labelledby="rofile-tab" tabindex="0">
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies3 } %>
+  </div>
+  <div class="tab-pane fade" id="ontact-tab-pane" role="tabpanel" aria-labelledby="ontact-tab" tabindex="0">
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies4 } %>
+  </div>
+  <div class="tab-pane fade" id="place-tab-pane" role="tabpanel" aria-labelledby="place-tab" tabindex="0">
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies5 } %>
+  </div>
+  <div class="tab-pane fade" id="thing-tab-pane" role="tabpanel" aria-labelledby="thing-tab" tabindex="0">
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies6 } %>
+  </div>
+</div>
+
+<script>
+ document.addEventListener("turbo:load", function() {
+  // ボタン要素を取得
+  var playButtons = document.querySelectorAll('.btn-light');
+
+  // イベントリスナーをクリア
+  playButtons.forEach(function(playButton) {
+    playButton.removeEventListener('click', playButtonClickHandler);
+  });
+
+  // ボタンがクリックされたときのイベントリスナーを再登録
+  playButtons.forEach(function(playButton) {
+    playButton.addEventListener('click', playButtonClickHandler);
+  });
+});
+
+function playButtonClickHandler() {
+  // 親要素(tr)を取得
+  var row = this.closest('tr');
+
+  // テーブルの <td> 要素を取得
+  var titleCell = row.querySelector('td:nth-child(3)');
+
+  // タイトルのテキストを取得
+  var text = titleCell.textContent.trim();
+
+  // Web Speech API を使用してテキストを読み上げる
+  var utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'zh-CN';
+  speechSynthesis.speak(utterance);
+}
+</script>
