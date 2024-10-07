@@ -45,15 +45,15 @@
           </thead>
           <tbody>
             <% index = 1 %>
-            <% @category_with_requests[category].each do |request| %>
+            <% @category_with_defaults[category].each do |default_vocabulary| %>
               <tr>
                 <th scope="row" style="white-space: nowrap;"><%= index %></th>
                 <td style="white-space: nowrap;"><button id="playButton" type="button" class="btn btn-light btn-icon"><i class="bi bi-volume-up"></i></button></td>
-                <td style="white-space: nowrap;"><%= request.title %></td>
-                <td style="white-space: nowrap;"><%= request.bopomofo %></td>
-                <td style="white-space: nowrap;"><%= request.mean %></td>
+                <td style="white-space: nowrap;"><%= default_vocabulary.title %></td>
+                <td style="white-space: nowrap;"><%= default_vocabulary.bopomofo %></td>
+                <td style="white-space: nowrap;"><%= default_vocabulary.mean %></td>
                 <td style="white-space: nowrap;">
-                  <%= link_to request_path(request) do %>
+                  <%= link_to default_vocabulary_path(default_vocabulary) do %>
                     <button type="button" class="btn btn-secondary">詳細</button>
                   <% end %>
                 </td>
