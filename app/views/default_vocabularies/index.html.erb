@@ -9,10 +9,10 @@
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-    <%= render partial: 'top_table', locals: { default_vocabularies: @default_vocabularies } %>
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies } %>
   </div>
   <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-    <%= render partial: 'top_table', locals: { default_vocabularies: @default_vocabularies1 } %>
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies1 } %>
   </div>
 </div>
 
@@ -36,78 +36,19 @@
 </ul>
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="ome-tab-pane" role="tabpanel" aria-labelledby="ome-tab" tabindex="0">
-    <%= render partial: 'top_table', locals: { default_vocabularies: @default_vocabularies2 } %>
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies2 } %>
   </div>
   <div class="tab-pane fade" id="rofile-tab-pane" role="tabpanel" aria-labelledby="rofile-tab" tabindex="0">
-    <%= render partial: 'top_table', locals: { default_vocabularies: @default_vocabularies3 } %>
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies3 } %>
   </div>
   <div class="tab-pane fade" id="ontact-tab-pane" role="tabpanel" aria-labelledby="ontact-tab" tabindex="0">
-    <%= render partial: 'top_table', locals: { default_vocabularies: @default_vocabularies4 } %>
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies4 } %>
   </div>
   <div class="tab-pane fade" id="place-tab-pane" role="tabpanel" aria-labelledby="place-tab" tabindex="0">
-    <%= render partial: 'top_table', locals: { default_vocabularies: @default_vocabularies5 } %>
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies5 } %>
   </div>
   <div class="tab-pane fade" id="thing-tab-pane" role="tabpanel" aria-labelledby="thing-tab" tabindex="0">
-    <%= render partial: 'top_table', locals: { default_vocabularies: @default_vocabularies6 } %>
-  </div>
-</div>
-
-<div class="top-bog">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-10 col-lg-8 mx-auto">
-        <h1 class="font1">自分用の会話帳を作成してみましょう。</h1>
-        <h2 class="font2">＊以下の機能はログイン後使えるようになります。</h2>
-        <div class="card cardstil">
-          <div class="card text-center">
-            <div class="card-header">
-              <h4 class="card-title">My会話帳とは</h5>
-              <p class="card-text">自分で作成した単語や文章を「My会話帳」で管理できます。以下の機能が使用できます。</p>
-            </div>
-          </div>
-          <%= image_tag 'phrasebook.jpg', class: 'card-img-bottom' %>
-        </div>
-        <div class="card mb-4 mx-auto ff" style="background-color: transparent;">
-          <div class="row g-0">
-            <div class="col-md-7 d-flex align-items-center">
-              <div class="card-body">
-                <h3 class="card-title">①カテゴリー機能</h3>
-                <p class="card-text">単語や文章を分ける為のカテゴリーを作成できます。</p>
-              </div>
-            </div>
-            <div class="col-md-5">
-              <%= image_tag 'phrasebooksumaho.jpg', class: 'img-fluid rounded-start', style: 'width: 100%; height: auto; object-fit: cover;' %>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-4 mx-auto ff" style="background-color: transparent;">
-          <div class="row g-0">
-            <div class="col-md-5 order-last order-md-first">
-              <%= image_tag 'phrasebooksumaho2.jpg', class: 'img-fluid rounded-start' %>
-            </div>
-            <div class="col-md-7 d-flex align-items-center">
-              <div class="card-body">
-                <h3 class="card-title">②ブックマーク機能</h3>
-                <p class="card-text">既存の単語をブックマークし、「My会話帳」に追加できます。</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card mb-4 mx-auto ff" style="background-color: transparent;">
-          <div class="row g-0">
-            <div class="col-md-7 d-flex align-items-center">
-              <div class="card-body">
-                <h3 class="card-title">③単語作成機能</h3>
-                <p class="card-text">「My会話帳」に入れたい単語や文章を作成し、追加できます。</p>
-              </div>
-            </div>
-            <div class="col-md-5">
-              <%= image_tag 'phrasebooksumaho3.jpg', class: 'img-fluid rounded-start' %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render partial: 'default_vocabularies_table', locals: { default_vocabularies: @default_vocabularies6 } %>
   </div>
 </div>
 
@@ -142,5 +83,4 @@ function playButtonClickHandler() {
   utterance.lang = 'zh-CN';
   speechSynthesis.speak(utterance);
 }
-
 </script>

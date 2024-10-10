@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_04_144241) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_24_230249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookmarks", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "request_id"
+    t.bigint "default_vocabulary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
     t.index ["category_id"], name: "index_bookmarks_on_category_id"
-    t.index ["request_id"], name: "index_bookmarks_on_request_id"
-    t.index ["user_id", "request_id"], name: "index_bookmarks_on_user_id_and_request_id", unique: true
+    t.index ["default_vocabulary_id"], name: "index_bookmarks_on_default_vocabulary_id"
+    t.index ["user_id", "default_vocabulary_id"], name: "index_bookmarks_on_user_id_and_default_vocabulary_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_04_144241) do
     t.index ["user_id"], name: "index_categories_on_user_id"
   end
 
-  create_table "requests", force: :cascade do |t|
+  create_table "default_vocabularies", force: :cascade do |t|
     t.string "title", null: false
     t.string "bopomofo", null: false
     t.string "mean", null: false
@@ -43,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_04_144241) do
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_requests_on_category_id"
-    t.index ["user_id"], name: "index_requests_on_user_id"
+    t.index ["category_id"], name: "index_default_vocabularies_on_category_id"
+    t.index ["user_id"], name: "index_default_vocabularies_on_user_id"
   end
 
   create_table "task_completions", force: :cascade do |t|
@@ -87,11 +87,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_04_144241) do
   end
 
   add_foreign_key "bookmarks", "categories"
-  add_foreign_key "bookmarks", "requests"
+  add_foreign_key "bookmarks", "default_vocabularies"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "categories", "users"
-  add_foreign_key "requests", "categories"
-  add_foreign_key "requests", "users"
+  add_foreign_key "default_vocabularies", "categories"
+  add_foreign_key "default_vocabularies", "users"
   add_foreign_key "task_completions", "users"
   add_foreign_key "vocabularies", "categories"
   add_foreign_key "vocabularies", "users"

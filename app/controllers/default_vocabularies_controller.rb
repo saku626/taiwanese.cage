@@ -1,7 +1,7 @@
-class StaticPagesController < ApplicationController
-  skip_before_action :require_login, only: %i[top privacy_policy terms_of_service]
+class DefaultVocabulariesController < ApplicationController
+  skip_before_action :require_login, only: [:show]
   
-  def top
+  def index
     target_category = Category.find_by(name: '日常生活')
     @default_vocabularies = DefaultVocabulary.where(category_id: target_category.id)  
     target_category1 = Category.find_by(name: 'ビジネス')
@@ -18,9 +18,7 @@ class StaticPagesController < ApplicationController
     @default_vocabularies6 = DefaultVocabulary.where(category_id: target_category6.id)
   end
 
-  def privacy_policy
-  end
-
-  def terms_of_service
+  def show
+    @default_vocabulary = DefaultVocabulary.find(params[:id])
   end
 end

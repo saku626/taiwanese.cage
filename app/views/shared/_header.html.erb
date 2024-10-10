@@ -2,7 +2,7 @@
   <div class='top-wrapper'>
   </div>
   <nav class='navbar navbar-expand-lg navigation navbar-dark menu-color'>
-    <%= link_to requests_path, class: 'navbar-brand' do %>
+    <%= link_to default_vocabularies_path, class: 'navbar-brand' do %>
       <%= image_tag 'logo.png' %>
     <% end %>
     <button class='navbar-toggler' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent'
@@ -13,7 +13,7 @@
     <div class='collapse navbar-collapse' id='navbarSupportedContent'>
       <ul class='navbar-nav ms-auto main-nav align-items-center'>
         <li class='nav-item'>
-          <%= link_to 'Phrases', requests_path, class: 'nav-link' %>
+          <%= link_to 'Basic Phrases / Words', default_vocabularies_path, class: 'nav-link' %>
         </li>
 
          <li class='nav-item'>
@@ -21,7 +21,7 @@
         </li>
 
         <li class='nav-item'>
-          <%= link_to 'リスト一覧', bookmarks_path, class: 'nav-link' %>
+          <%= link_to 'My会話帳', bookmarks_path, class: 'nav-link' %>
         </li>
 
         <li class="nav-item">

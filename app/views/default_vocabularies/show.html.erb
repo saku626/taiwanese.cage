@@ -8,19 +8,19 @@
             <div class="col-md-9">
               <div class="border-bottom mb-3 pb-2">
                 <div style="font-size: 1.4rem;" >台湾華語</div>
-                <div style="font-size: 1.8rem;"><%= @request.title %></div>
+                <div style="font-size: 1.8rem;"><%= @default_vocabulary.title %></div>
               </div>
               <div class="border-bottom mb-3 pb-2">
                 <div style="font-size: 1.4rem;">ボポモフォ</div>
-                <div style="font-size: 1.8rem;"><%= @request.bopomofo %></div>
+                <div style="font-size: 1.8rem;"><%= @default_vocabulary.bopomofo %></div>
               </div>
               <div class="border-bottom mb-3 pb-2">
                 <div style="font-size: 1.4rem;">意味</div>
-                <div style="font-size: 1.8rem;"><%= @request.mean %></div>
+                <div style="font-size: 1.8rem;"><%= @default_vocabulary.mean %></div>
               </div>
               <div class="border-bottom mb-3 pb-2">
                 <div style="font-size: 1.4rem;">説明</div>
-                <div style="font-size: 1.8rem;"> <p><%= simple_format(@request.body) %></p></div>
+                <div style="font-size: 1.8rem;"> <p><%= simple_format(@default_vocabulary.body) %></p></div>
               </div>
             </div>
           </div>

@@ -1,24 +1,24 @@
 class BookmarksController < ApplicationController
   def index
     @category = Category.where(user_id: current_user.id)
-    @category_with_requests = {}
+    @category_with_defaults = {}
     @category_with_vocabularies = {}
     @category.each do |category|
-      @category_with_requests[category] = current_user.bookmarks.includes(:request).where(category_id: category.id).order(created_at: :desc).map(&:request)
+      @category_with_defaults[category] = current_user.bookmarks.includes(:default_vocabulary).where(category_id: category.id).order(created_at: :desc).map(&:default_vocabulary)
       @category_with_vocabularies[category] = Vocabulary.where(category_id: category.id).order(created_at: :desc)
     end
   end
 
   def create
-    request = Request.find(params[:request_id])
+    default_vocabulary = DefaultVocabulary.find(params[:default_vocabulary_id])
     category_id = params[:category_id]
-    current_user.bookmark(request, category_id)
-    redirect_to requests_path, success: "リストに追加しました"
+    current_user.bookmark(default_vocabulary, category_id)
+    redirect_to default_vocabularies_path, success: "リストに追加しました"
   end
 
   def destroy
-    request = current_user.bookmarks.find(params[:id]).request
-    current_user.unbookmark(request)
-    redirect_to requests_path, success: "リストから削除しました", status: :see_other
+    default_vocabulary = current_user.bookmarks.find(params[:id]).default_vocabulary
+    current_user.unbookmark(default_vocabulary)
+    redirect_to default_vocabularies_path, success: "リストから削除しました", status: :see_other
   end
 end
