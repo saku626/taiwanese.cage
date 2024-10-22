@@ -7,6 +7,9 @@ class BookmarksController < ApplicationController
       @category_with_defaults[category] = current_user.bookmarks.includes(:default_vocabulary).where(category_id: category.id).order(created_at: :desc).map(&:default_vocabulary)
       @category_with_vocabularies[category] = Vocabulary.where(category_id: category.id).order(created_at: :desc)
     end
+
+    # カテゴリーがない場合にフラグを設定
+    @no_categories = @category.empty?
   end
 
   def create
