@@ -95,6 +95,50 @@
     </div>
   <% end %>
 </div>
+<div class="saize">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-lg-8 mx-auto">
+        <% if @no_categories %>
+          <div class="alert alert-info">
+            まだカテゴリーが作成されていません。まずはカテゴリーを作成しましょう。
+          </div>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="card mb-4 mx-auto ff">
+                <%= image_tag 'phrasebooksumaho.jpg', class: 'card-img-top' %>
+                <div class="card-body">
+                  <h5 class="card-title">①まずは、カテゴリーを追加しましょう</h5>
+                  <p class="card-text">単語や文章を分ける為のカテゴリーを作成できます。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card mb-4 mx-auto ff">
+                <%= image_tag 'phrasebooksumaho2.jpg', class: 'card-img-top' %>
+                <div class="card-body">
+                  <h5 class="card-title">②ブックマーク機能</h5>
+                  <p class="card-text">既存の単語をブックマークし、「My会話帳」に追加できます。</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card mb-4 mx-auto ff">
+                <%= image_tag 'phrasebooksumaho3.jpg', class: 'card-img-top' %>
+                <div class="card-body">
+                  <h5 class="card-title">③単語作成機能</h5>
+                  <p class="card-text">「My会話帳」に入れたい単語や文章を作成し、追加できます。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <!-- ここに既存のカテゴリーがある場合の表示を記述 -->
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
  document.addEventListener("turbo:load", function() {
