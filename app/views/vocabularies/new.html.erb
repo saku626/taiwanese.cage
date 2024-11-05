@@ -4,12 +4,14 @@
       <h1>単語の作成</h1>
       <%= form_with model: @vocabulary, class: "new_board" do |f| %>
         <div class="mb-3">
-            <%= f.label :title, "台湾華語" %>
-            <%= f.text_field :title, class: "form-control" %>
+            <%= f.label :title, "台湾華語", for: "title-input" %>
+            <%= f.text_field :title, class: "form-control", id: "title-input", onclick: "setActiveField('title')" %>
+            <div id="suggestions" class="suggestions-dropdown" style="display:none;"></div>
+            <p style="color: green;">↑フィールドをアクティブにするとスクリーンキーボードの入力で繁体字にできます。</p>
         </div>
         <div class="mb-3">
             <%= f.label :bopomofo, "注音符号（ボポモフォ）", for: "bopomofo-input" %>
-            <%= f.text_field :bopomofo, class: "form-control", id: "bopomofo-input" %>
+            <%= f.text_field :bopomofo, class: "form-control", id: "bopomofo-input", onclick: "setActiveField('bopomofo')" %>
         </div>
           <%= render 'shared/bopomofo_keyboard' %>
         <div class="mb-3">
@@ -36,8 +38,69 @@
 </div>
 
 <script>
-  function typeKey(char) {
-    const bopomofoInput = document.getElementById('bopomofo-input');
-    bopomofoInput.value += char;
+let bopomofoToTraditional = {};
+let activeField = 'bopomofo'; // 初期アクティブフィールド
+let currentBopomofo = ''; // 現在のボポモフォ文字列
+
+// JSON ファイルから変換マッピングを取得
+fetch('/bopomofo_to_traditional.json')
+  .then(response => response.json())
+  .then(data => {
+    bopomofoToTraditional = data;
+  })
+  .catch(error => console.error('Error loading JSON:', error));
+
+function setActiveField(field) {
+  activeField = field; // アクティブなフィールドを更新
+  if (field === 'title') {
+    currentBopomofo = ''; // タイトルフィールドがアクティブになった時にリセット
+    document.getElementById('suggestions').style.display = 'none'; // 候補を非表示にする
   }
+}
+
+function showSuggestions(bopomofo) {
+  const suggestionsContainer = document.getElementById('suggestions');
+  suggestionsContainer.innerHTML = ''; // 既存の候補をクリア
+
+  const candidates = bopomofoToTraditional[bopomofo];
+
+  if (candidates && Array.isArray(candidates)) {
+    // 候補がある場合、ドロップダウンを作成
+    candidates.forEach(traditionalChar => {
+      const suggestion = document.createElement('div');
+      suggestion.className = 'suggestion-item';
+      suggestion.textContent = traditionalChar;
+      suggestion.onclick = () => selectSuggestion(traditionalChar);
+      suggestionsContainer.appendChild(suggestion);
+    });
+    suggestionsContainer.style.display = 'block';
+  } else {
+    // 候補がない場合はドロップダウンを非表示
+    suggestionsContainer.style.display = 'none';
+  }
+}
+
+function selectSuggestion(selectedChar) {
+  const titleInput = document.getElementById('title-input');
+  // 選択した繁体字をtitleフィールドに追加
+  titleInput.value = titleInput.value.slice(0, -currentBopomofo.length) + selectedChar; // ボポモフォを繁体字に置換 
+  currentBopomofo = ''; // ボポモフォをクリア
+  document.getElementById('bopomofo-input').value = ''; // ボポモフォ入力フィールドもクリア
+  document.getElementById('suggestions').style.display = 'none'; // 候補を非表示にする
+}
+
+function typeKey(char) {
+  const bopomofoInput = document.getElementById('bopomofo-input');
+  const titleInput = document.getElementById('title-input');
+
+  if (activeField === 'bopomofo') {
+    bopomofoInput.value += char; // ボポモフォ入力フィールドに追加
+    currentBopomofo += char; // 現在のボポモフォ文字列に追加
+  } else if (activeField === 'title') {
+    // タイトルフィールドに現在のボポモフォを表示
+    titleInput.value += char; 
+    currentBopomofo += char; // 現在のボポモフォ文字列に追加
+    showSuggestions(currentBopomofo);
+  }
+}
 </script>
