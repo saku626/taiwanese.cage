@@ -85,7 +85,6 @@ function selectSuggestion(selectedChar) {
   // 選択した繁体字をtitleフィールドに追加
   titleInput.value = titleInput.value.slice(0, -currentBopomofo.length) + selectedChar; // ボポモフォを繁体字に置換 
   currentBopomofo = ''; // ボポモフォをクリア
-  document.getElementById('bopomofo-input').value = ''; // ボポモフォ入力フィールドもクリア
   document.getElementById('suggestions').style.display = 'none'; // 候補を非表示にする
 }
 
