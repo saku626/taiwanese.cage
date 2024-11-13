@@ -276,6 +276,12 @@ h2,h3,h4 {
     width: 60%;
   }
 
+  .keyboard {
+    display: grid;
+    grid-template-columns: repeat(8, 40px);
+    gap: 5px;
+  }
+
   .custom-margin {
     margin-bottom: 1rem; /* ここで空白の大きさを調整できます */
   }
