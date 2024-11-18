@@ -1,4 +1,5 @@
 # 日常会話で使える台湾華語
+![topたいわん小](https://github.com/user-attachments/assets/fb9e6812-b580-43c3-8874-72ff838c91db)
 ## 画面遷移図
 Figma：https://www.figma.com/file/AL0efY62iqmVfP7S8oYM8v/%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=XOjh5ZopM7gLsfu8-1
 
