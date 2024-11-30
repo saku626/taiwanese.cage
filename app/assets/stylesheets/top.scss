@@ -47,6 +47,24 @@
   color: #000 !important;
 }
 
+.suggestions-dropdown {
+  border: 1px solid #ccc;
+  background: white;
+  position: absolute;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 30%;
+}
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background: #f0f0f0;
+}
+
 body {
   background-color: rgb(255, 252, 247);
   background: linear-gradient(
@@ -234,6 +252,15 @@ h2,h3,h4 {
     margin-right: 30px;
     margin-left: 30px;
   }
+
+  .suggestions-dropdown {
+    border: 1px solid #ccc;
+    background: white;
+    position: absolute;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 50%;
+  }
 }
 
 /* スマホ */
@@ -247,6 +274,12 @@ h2,h3,h4 {
 
   .custom-width {
     width: 60%;
+  }
+
+  .keyboard {
+    display: grid;
+    grid-template-columns: repeat(8, 40px);
+    gap: 5px;
   }
 
   .custom-margin {
@@ -267,6 +300,15 @@ h2,h3,h4 {
 
   .collapse.navbar-collapse{
     margin-right: 0px;
+  }
+
+  .suggestions-dropdown {
+    border: 1px solid #ccc;
+    background: white;
+    position: absolute;
+    max-height: 150px;
+    overflow-y: auto;
+    width: 50%;
   }
 
   .calendar-container {
