@@ -30,7 +30,8 @@ https://gyazo.com/d4f4e480d9b30025ccce5aec98170dfc
 ![スクリーンショット会話帳の使い方](https://github.com/user-attachments/assets/5a6cde9e-87a4-428b-a627-01739b1bc5cd)
 #### ☟My会話帳の機能☟
 * **カテゴリー機能**<br>
-単語や文章を分けるためのカテゴリーを作成できます。
+単語や文章を分けるためのカテゴリーを作成できます。<br>
+![スクリーンショット会話帳の使い方スマホサイズ](https://github.com/user-attachments/assets/8aa2e550-4625-4df8-b578-9e8c29fe7ebe)
 * **ブックマーク機能**<br>
 既存の単語をブックマークし、「My会話帳」に追加できます。
 * **単語、文章登録機能**<br>
